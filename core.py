@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
+
 lst = []
 dct = {}
 dct2 = {}
@@ -47,10 +51,29 @@ def max_sum_sales(dct3):
         if value == max(dct3.values()):
             return key
 
+def paint_chart(dct2):
+    fig, axs = plt.subplots(1, 2)
+    fig.set_figheight(7)
+    fig.set_figwidth(16)
+
+    #сумма продаж по каждому продукту
+    x = [i for i in dct2.keys()]
+    y = [i for i in dct2.values()]
+    axs[0].bar(x, y, width=0.4)
+    axs[0].set_title('Сумма продаж по продукту')
+
+    #сумма продаж по дням
+    x = [i for i in dct3.keys()]
+    y = [i for i in dct3.values()]
+    axs[1].bar(x, y, width=0.4)
+    axs[1].set_title('Сумма продаж по дням')
+
+    plt.show()
+
 read_sales_data('sales.txt')
 total_sales_per_product(lst)
 sales_over_time(lst)
-
+paint_chart(dct2)
 
 print(f'Наибольшую выручку принесли: {max_profit(dct2)}.')
 print(f'Наибольшая сумма продаж {max_sum_sales(dct3)} числа.')
