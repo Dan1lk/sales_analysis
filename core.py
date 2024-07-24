@@ -35,6 +35,22 @@ def sales_over_time(sales_data):
             dct3[row['дата']] = int(row['количество']) * int(row['цена'])
     return dct3
 
-print(read_sales_data('sales.txt'))
-print(total_sales_per_product(lst))
-print(sales_over_time(lst))
+def max_profit(dct2):
+    '''Какой продукт принес наибольшую выручку'''
+    for key, value in dct2.items():
+        if value == max(dct2.values()):
+            return key
+
+def max_sum_sales(dct3):
+    '''Какого числа наибольшая сумма продаж'''
+    for key, value in dct3.items():
+        if value == max(dct3.values()):
+            return key
+
+read_sales_data('sales.txt')
+total_sales_per_product(lst)
+sales_over_time(lst)
+
+
+print(f'Наибольшую выручку принесли: {max_profit(dct2)}.')
+print(f'Наибольшая сумма продаж {max_sum_sales(dct3)} числа.')
