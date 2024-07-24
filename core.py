@@ -52,6 +52,7 @@ def max_sum_sales(dct3):
             return key
 
 def paint_chart(dct2):
+    '''Построение графиков'''
     fig, axs = plt.subplots(1, 2)
     fig.set_figheight(7)
     fig.set_figwidth(16)
