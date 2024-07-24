@@ -1,7 +1,8 @@
 dct = {}
 lst = []
+dct2 = {}
 def read_sales_data(file_path: str):
-    '''Сохраняем покупки в список словарей, возвращаем этот список'''
+    '''Сохраняем покупки в список словарей, возвращаем этот список продаж'''
 
     with open(file_path, 'r', encoding="utf-8") as file:
         for row in file.readlines():
@@ -13,4 +14,14 @@ def read_sales_data(file_path: str):
             lst.append(dct.copy())
         return lst
 
-print(read_sales_data('sales.txt'))
+def total_sales_per_product(sales_data):
+    """ Принимает список продаж и возвращает словарь, где ключ - название продукта,
+    а значение - общая сумма продаж этого продукта."""
+    for row in sales_data:
+        try:
+            dct2[row['название']] += int(row['количество']) * int(row['цена'])
+        except KeyError:
+            dct2[row['название']] = int(row['количество']) * int(row['цена'])
+    return dct2
+read_sales_data('sales.txt')
+total_sales_per_product(lst)
